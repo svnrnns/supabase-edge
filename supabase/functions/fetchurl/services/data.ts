@@ -31,7 +31,7 @@ export function failedResponse(url: string) {
   };
 }
 
-export function formattedToRegularNumber(str: string) {
+export function formattedToRegularNumber(str: string): number {
   const multiplierMap = {
     K: 1000,
     M: 1000000,

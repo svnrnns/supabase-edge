@@ -1,4 +1,6 @@
 import { track } from '../fetchers/spotify.ts';
+import { profile } from '../fetchers/instagram.ts';
+
 import { failedResponse } from './data.ts';
 
 const spotifyURL = 'open.spotify.com';
@@ -11,12 +13,11 @@ export async function process(url: string) {
     response = await track(url);
   }
 
-  return response === undefined ? failedResponse(url) : response;
-
-  //   if (url.includes(instagramURL)) {
-  //     instagram.profile(url, res);
-  //     return;
-  //   }
+  if (url.includes(instagramURL)) {
+    response = await profile(url);
+  }
 
   //   any.handle(url, res);
+
+  return response === undefined ? failedResponse(url) : response;
 }
