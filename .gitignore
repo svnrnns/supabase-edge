@@ -1,0 +1,23 @@
+# Supabase
+.branches
+.temp
+
+# local env files
+.env
+.env.local
+.env.*.local
+
+# misc
+.DS_Store
+*.pem
+
+# Editor directories and files
+.idea
+.vscode
+jsconfig.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.vercel

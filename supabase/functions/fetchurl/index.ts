@@ -1,49 +1,45 @@
-import { serve } from "https://deno.land/std/http/server.ts";
+import { serve } from 'https://deno.land/std/http/server.ts';
+import { process } from './services/http.ts';
+
+const headersNoCors = {
+  'Content-Type': 'application/json',
+  'Access-Control-Allow-Origin': '*',
+};
 
 serve(async (req) => {
-  if (req.method === "OPTIONS") {
+  if (req.method === 'OPTIONS') {
     return new Response(null, {
       status: 204,
       headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       },
     });
   }
 
   const url = new URL(req.url);
-  const urlParam = url.searchParams.get("url");
+  const urlParam = url.searchParams.get('url');
 
   if (!urlParam) {
-    return new Response(JSON.stringify({ error: "Missing url parameter" }), {
+    return new Response(JSON.stringify({ error: 'Missing url parameter' }), {
       status: 400,
-      headers: { 
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
+      headers: headersNoCors,
     });
   }
 
   try {
-    const bentoUrl = `https://api.bento.me/v1/urlrichdata/${encodeURIComponent(urlParam)}`;
-    const bentoResponse = await fetch(bentoUrl);
-    const bentoData = await bentoResponse.json();
+    const response = await process(urlParam);
 
-    return new Response(JSON.stringify(bentoData), {
+    console.log(response);
+    return new Response(JSON.stringify(response), {
       status: 200,
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
+      headers: headersNoCors,
     });
   } catch (error) {
-    return new Response(JSON.stringify({ error: "Failed to fetch data" }), {
+    return new Response(JSON.stringify({ error: 'Failed to fetch data' }), {
       status: 500,
-      headers: { 
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
+      headers: headersNoCors,
     });
   }
 });
