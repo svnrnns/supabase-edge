@@ -37,10 +37,16 @@ serve(async (req) => {
       headers: headersNoCors,
     });
   } catch (error) {
-    console.log(error);
-    return new Response(JSON.stringify({ error: 'Failed to fetch data' }), {
-      status: 500,
-      headers: headersNoCors,
-    });
+    return new Response(
+      JSON.stringify({
+        error: 'Failed to fetch data',
+        message: error.message,
+        name: error.name,
+      }),
+      {
+        status: 500,
+        headers: headersNoCors,
+      }
+    );
   }
 });

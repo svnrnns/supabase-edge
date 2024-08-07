@@ -116,7 +116,12 @@ To deploy or update the function, run this command:
 
 ```sh
 supabase functions deploy your-name --project-ref refkey
+```
 
+Additionally, you can test your functions locally with:
+
+```sh
+supabase functions serve
 ```
 
 This completes the setup and deployment process for Supabase Edge Functions.
