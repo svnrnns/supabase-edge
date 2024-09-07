@@ -1,6 +1,6 @@
 // @ts-ignore
 import { serve } from 'https://deno.land/std/http/server.ts';
-import { process } from './services/http.ts';
+import { processUrl } from './services/http.ts';
 import {
   getOptionsResponse,
   getParamFromRequest,
@@ -24,7 +24,7 @@ serve(async (req: any) => {
   }
 
   try {
-    const response = await process(urlParam);
+    const response = await processUrl(urlParam);
     console.log(response);
 
     return new Response(JSON.stringify(response), {
