@@ -1,3 +1,4 @@
+// @ts-ignore
 import axios from 'npm:axios@1.7.3';
 
 export async function getHTML(url: string) {

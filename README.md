@@ -1,5 +1,7 @@
 # Supabase Edge Functions
 
+> Note: Function collections are stored in supabase directory. Every edge function is represented as a directory: e.g. fetchurl
+
 ## Table of Contents
 
 - [Introduction](#introduction)

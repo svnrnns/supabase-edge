@@ -1,3 +1,4 @@
+// @ts-ignore
 import * as cheerio from 'npm:cheerio@1.0.0-rc.12';
 import { getMetatag, getHTML, generateDataTemplate } from '../services/data.ts';
 
