@@ -21,7 +21,7 @@ const urlHandlers: Record<string, (url: string) => Promise<any>> = {
 // Define URL conditions for matching
 const urlPatterns = [
   {
-    pattern: 'open.spotify.com/track/',
+    pattern: 'open.spotify.com',
     handlerKey: 'spotify',
     includes: ['track'],
   },
