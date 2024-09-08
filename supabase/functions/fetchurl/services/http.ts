@@ -1,7 +1,6 @@
-import { track } from '../fetchers/spotify.ts';
-import { profile } from '../fetchers/instagram.ts';
-import { handle } from '../fetchers/any.ts';
 import { ProcessedResponse } from '../utils/types.ts';
+import { urlPatterns } from './http/patterns.ts';
+import { urlHandlers } from './http/handlers.ts';
 
 export function failedResponse(url: string): ProcessedResponse {
   return {
@@ -11,25 +10,9 @@ export function failedResponse(url: string): ProcessedResponse {
   };
 }
 
-// Define URL patterns
-const urlHandlers: Record<string, (url: string) => Promise<any>> = {
-  spotify: (url) => track(url),
-  instagram: (url) => profile(url),
-  default: (url) => handle(url),
-};
-
-// Define URL conditions for matching
-const urlPatterns = [
-  {
-    pattern: 'open.spotify.com',
-    handlerKey: 'spotify',
-    includes: ['track'],
-  },
-  { pattern: 'instagram.com', handlerKey: 'instagram', includes: [] },
-];
-
 // Get the appropriate handler based on the URL
-function getHandler(url: string): (url: string) => Promise<any> {
+function getHandler(url: string): (url: string) => Promise<ProcessedResponse> {
+  console.log(Object.values(urlPatterns));
   for (const { pattern, handlerKey, includes } of urlPatterns) {
     if (url.includes(pattern)) {
       // Check if additional includes are required
@@ -42,12 +25,12 @@ function getHandler(url: string): (url: string) => Promise<any> {
 }
 
 // Build a uniform response
-function buildResponse(response: any, url: string): Object {
+function buildResponse(response: ProcessedResponse, url: string): Object {
   return response === undefined ? failedResponse(url) : response;
 }
 
 // Main process function to handle requests
-export async function processUrl(url: string): Promise<Object> {
+export async function processUrl(url: string): Promise<any> {
   const handler = getHandler(url);
   try {
     const response = await handler(url);
