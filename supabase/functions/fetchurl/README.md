@@ -16,7 +16,6 @@ The `fetchurl` Supabase Edge Function is a web scraping service that processes U
 
 ```bash
 git clone https://github.com/svnrnns/supabase-edge.git
-cd functions/fetchurl
 ```
 
 2. **Install Dependencies (optional)**: Ensure you have the necessary dependencies installed.
@@ -29,16 +28,12 @@ curl -fsSL https://deno.land/x/install/install.sh | sh
 brew install deno
 ```
 
-3. **Run**: This project can be run through Supabase CLI or executing a local deno server. <br/>
-   3.1. With Supabse
-
+3. **Run**: This project can be run through Supabase CLI or executing a local deno server.
 ```bash
+# with supabase
 supabase functions serve
-```
 
-3.2. With Deno server
-
-```
+# with deno server
 deno run --allow-net server.ts
 ```
 
