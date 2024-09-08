@@ -2,19 +2,17 @@ import { fetchPageData } from '../../utils/fetchersUtils.ts';
 import { ProcessedResponse } from '../../utils/types.ts';
 import { getMetatag } from '../../utils/httpProcessing.ts';
 
-export async function processSpotifyTrack(
+export async function processSpotifyAlbum(
   url: string
 ): Promise<ProcessedResponse> {
   return await fetchPageData(url, ($) => {
     return {
       title: getMetatag($, 'title'),
-      album: getMetatag($, 'album'),
-      type: 'song',
+      type: 'album',
+      artists: getMetatag($, 'description')?.split('·')[1].trim(),
       release_date: getMetatag($, 'release_date'),
-      duration_in_minutes: parseInt(getMetatag($, 'duration')!),
-      artists: getMetatag($, 'musician_description')?.split(', '),
-      audio_preview: getMetatag($, 'audio'),
       cover: getMetatag($, 'image'),
+      songs: 0, //todo
     };
   });
 }

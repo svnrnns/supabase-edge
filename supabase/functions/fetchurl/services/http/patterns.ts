@@ -5,8 +5,13 @@ export const urlPatterns = [
     includes: ['track'],
   },
   {
+    pattern: 'open.spotify.com',
+    handlerKey: 'spotify-album',
+    includes: ['album'],
+  },
+  {
     pattern: 'instagram.com',
-    handlerKey: 'instagram',
+    handlerKey: 'instagram-profile',
     includes: [],
   },
 ];
