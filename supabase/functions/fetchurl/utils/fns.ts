@@ -20,3 +20,10 @@ export function formattedToRegularNumber(str: string): number {
     return parseFloat(strippedNumberPart);
   }
 }
+
+export function extractNumbersFromString(str: string): number {
+  const result = str.match(/\d+/);
+  if (result) {
+    return parseInt(result[0]);
+  } else return 0;
+}

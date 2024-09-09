@@ -12,7 +12,6 @@ export function failedResponse(url: string): ProcessedResponse {
 
 // Get the appropriate handler based on the URL
 function getHandler(url: string): (url: string) => Promise<ProcessedResponse> {
-  console.log(Object.values(urlPatterns));
   for (const { pattern, handlerKey, includes } of urlPatterns) {
     if (url.includes(pattern)) {
       // Check if additional includes are required
