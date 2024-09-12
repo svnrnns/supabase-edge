@@ -14,7 +14,6 @@ export function failedResponse(url: string): ProcessedResponse {
 function getHandler(url: string): (url: string) => Promise<ProcessedResponse> {
   for (const { pattern, handlerKey, includes } of urlPatterns) {
     if (url.includes(pattern)) {
-      // Check if additional includes are required
       if (includes.every((include) => url.includes(include))) {
         return urlHandlers[handlerKey];
       }

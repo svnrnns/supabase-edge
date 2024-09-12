@@ -1,5 +1,3 @@
-// utils/httpHelpers.ts
-
 // Get a Response with all allowed methods methods
 export function getOptionsResponse(): Response {
   return new Response(null, {

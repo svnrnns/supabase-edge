@@ -14,4 +14,9 @@ export const urlPatterns = [
     handlerKey: 'instagram-profile',
     includes: [],
   },
+  {
+    pattern: 'youtube.com',
+    handlerKey: 'youtube-profile',
+    includes: ['@'],
+  },
 ];

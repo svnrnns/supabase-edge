@@ -16,6 +16,7 @@ export async function getHTML(url: string): Promise<string> {
 export function getMetatag($: any, name: string): string | undefined {
   const selectors = [
     `meta[name="${name}"]`,
+    `meta[itemprop="${name}"]`,
     `meta[property="og:${name}"]`,
     `meta[property="twitter:${name}"]`,
     `meta[name="music:${name}"]`,
@@ -26,7 +27,7 @@ export function getMetatag($: any, name: string): string | undefined {
     if (content) return content;
   }
 
-  return undefined; // Return undefined if the tag isn't found
+  return undefined;
 }
 
 // Generate the initial template for the API response

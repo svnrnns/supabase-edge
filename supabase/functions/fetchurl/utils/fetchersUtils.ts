@@ -14,7 +14,6 @@ export async function fetchPageData(
     const html = await getHTML(url);
     const $ = cheerio.load(html);
 
-    // General metadata extraction
     const metadata = {
       page_title: $('title').text() ?? '',
       page_description: getMetatag($, 'description') ?? '',

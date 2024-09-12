@@ -19,7 +19,6 @@ export async function processSpotifyAlbum(
       songs = extractNumbersFromString(splittedDescription[l - 1]);
     }
 
-    console.log(description);
     return {
       artist,
       songs,

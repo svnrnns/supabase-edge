@@ -7,7 +7,6 @@ export async function processInstagramProfile(
   url: string
 ): Promise<ProcessedResponse> {
   return await fetchPageData(url, ($) => {
-    // Custom extractor for Instagram-specific metadata
     const avatar = getMetatag($, 'image');
     const titleData = getMetatag($, 'title');
     const { accountName, username } = extractDataFromTitle(titleData!);
